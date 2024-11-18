@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TeknikaApp.Views.HomePage">
+    <Grid>
+        <Image Source="login_back.jpg"
+               Aspect="AspectFill"
+               Opacity="0.5"
+               Grid.RowSpan="2"
+               Grid.ColumnSpan="2"/>
+
+        <VerticalStackLayout>
+            <Image Source="logo_teknika.png"
+                   WidthRequest="200"
+                   HeightRequest="100" />
+
+            <!-- Rettangolo bianco con la lista dei link -->
+            <Frame BackgroundColor="White"
+               Padding="20"
+               CornerRadius="10"
+               BorderColor="LightGray"
+               HasShadow="True"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand">
+
+                <!-- Lista di link (Label come link) -->
+                <StackLayout Spacing="10">
+                    <Label Text="Catalogo"
+                       TextColor="Blue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigateToCatalogCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="Carrello"
+                       TextColor="Blue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigateToCartCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="Profilo"
+                       TextColor="Blue">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigateToProfileCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="TeknikaApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TeknikaApp.Views"
+    Shell.FlyoutBehavior="Flyout"
+    Title="TeknikaApp">
+
+    <!-- Menu laterale (Flyout) -->
+    <FlyoutItem Title="Catalogo">
+        <ShellContent Route="CatalogPage" ContentTemplate="{DataTemplate local:CatalogPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Carrello">
+        <ShellContent Route="CartPage" ContentTemplate="{DataTemplate local:CartPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Carrello">
+        <ShellContent Route="DraftPage" ContentTemplate="{DataTemplate local:DraftPage}" />
+    </FlyoutItem>
+    
+    <FlyoutItem Title="Ordini">
+        <ShellContent Route="OrdersPage" ContentTemplate="{DataTemplate local:OrdersPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Profilo">
+        <ShellContent Route="ProfilePage" ContentTemplate="{DataTemplate local:ProfilePage}" />
+    </FlyoutItem>
+
+    <!-- Menu Logout -->
+    <MenuItem Text="Logout" Command="{Binding LogoutCommand}" />
+
+    <ShellContent Route="HomePage" ContentTemplate="{DataTemplate local:HomePage}" />
+    <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
+</Shell>

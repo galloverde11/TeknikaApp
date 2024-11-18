@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TeknikaApp.Views.LoginPage">
+    <Grid>
+        <Image Source="login_back.jpg"
+               Aspect="AspectFill"
+               Opacity="1"
+               Grid.RowSpan="2"
+               Grid.ColumnSpan="2"/>
+
+        <StackLayout Padding="30" Spacing="20" VerticalOptions="Center">
+            <Image Source="logo_teknika.png"
+                   WidthRequest="200"
+                   HeightRequest="100" />
+
+            <Entry x:Name="UsernameEntry" Placeholder="Username" BackgroundColor="White" TextChanged="OnUsernameTextChanged"/>
+            <Entry x:Name="PasswordEntry" Placeholder="Password" BackgroundColor="White" IsPassword="True" TextChanged="OnPasswordTextChanged" />
+
+            <Button x:Name="LoginButton" Text="Login" Clicked="OnLoginButtonClicked" IsEnabled="False"/>
+            <Button x:Name="ResetPasswordButton" Text="Richiedi nuova password" BackgroundColor="Red" Clicked="OnResetPswButtonClicked" IsEnabled="False"/>
+
+            <Label Text="{Binding ErrorMessage}" TextColor="Red" />
+        </StackLayout>
+    </Grid>
+</ContentPage>
