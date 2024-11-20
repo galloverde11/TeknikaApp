@@ -1,4 +1,4 @@
-﻿namespace TeknikaApp.Model;
+﻿namespace TeknikaApp.Models;
 
 public class JsonModel
 {

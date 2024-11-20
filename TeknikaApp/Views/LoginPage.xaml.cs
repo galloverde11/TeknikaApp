@@ -1,5 +1,5 @@
-using TeknikaApp.Model;
-using TeknikaApp.Service;
+using TeknikaApp.Models;
+using TeknikaApp.Services;
 
 namespace TeknikaApp.Views;
 
@@ -28,15 +28,22 @@ public partial class LoginPage : ContentPage
 
     private async void OnLoginButtonClicked(object sender, EventArgs e)
     {
-        bool success = await _authService.LoginAsync(UsernameEntry.Text, PasswordEntry.Text);
+        try
+        {
+            bool success = await _authService.LoginAsync(UsernameEntry.Text, PasswordEntry.Text);
 
-        if (success)
-        {
-            await Shell.Current.GoToAsync("//HomePage");
+            if (success)
+            {
+                await Shell.Current.GoToAsync("//HomePage");
+            }
+            else
+            {
+                await DisplayAlert("Errore", "Credenziali non valide.", "OK");
+            }
         }
-        else
+        catch (Exception ex)
         {
-            await DisplayAlert("Errore", "Credenziali non valide.", "OK");
+            await DisplayAlert("Errore", ex.Message, "OK");
         }
     }
 

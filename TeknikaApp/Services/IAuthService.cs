@@ -1,6 +1,6 @@
-﻿using TeknikaApp.Model;
+﻿using TeknikaApp.Models;
 
-namespace TeknikaApp.Service;
+namespace TeknikaApp.Services;
 
 public interface IAuthService
 {

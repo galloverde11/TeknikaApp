@@ -2,6 +2,59 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TeknikaApp.Views.CartPage">
-    <VerticalStackLayout>
-    </VerticalStackLayout>
+    
+    <StackLayout Padding="20">
+        <!-- Mostra i prodotti solo se ci sono articoli nel carrello -->
+        <ListView x:Name="cartItemsListView" IsVisible="{Binding NoRecords, Converter={StaticResource InverseBoolConverter}}">
+            <ListView.Header>
+                <Label Text="Scorri le righe a destra e sinistra per modificarle" FontAttributes="Italic" />
+            </ListView.Header>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <!-- Sezione Immagine e Nome prodotto -->
+                            <Grid Grid.Row="0">
+                                <Image Source="{Binding ImageUrl}" HeightRequest="100" />
+                                <Label Text="{Binding Name}" Grid.Row="1" FontSize="Medium" />
+                            </Grid>
+
+                            <!-- Sezione Quantità e Prezzo -->
+                            <Grid Grid.Row="1">
+                                <Label Text="Qtà: {Binding Qty}" />
+                                <Label Text="{Binding Price, StringFormat='{0:C}'}" HorizontalOptions="End" />
+                            </Grid>
+
+                            <!-- Azioni per modifica ed eliminazione -->
+                            <Grid Grid.Row="2" HorizontalOptions="FillAndExpand" Padding="5">
+                                <Button Text="Modifica" Command="{Binding EditCommand}" />
+                                <Button Text="Elimina" Command="{Binding DeleteCommand}" />
+                            </Grid>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Mostra il carrello vuoto se NoRecords è true -->
+        <Label Text="Carrello vuoto" IsVisible="{Binding NoRecords}" HorizontalOptions="Center" />
+
+        <!-- Totale carrello -->
+        <Grid Padding="10">
+            <Label Text="Totale Carrello" />
+            <Label Text="{Binding TotalPrice, StringFormat='{0:C}'}" HorizontalOptions="End" />
+        </Grid>
+
+        <!-- Pulsanti azioni -->
+        <Button Text="Svuota il Carrello" Command="{Binding FlushCartCommand}" />
+        <Button Text="Procedi" Command="{Binding ProceedToCheckoutCommand}" IsEnabled="{Binding NoRecords, Converter={StaticResource InverseBoolConverter}}" />
+        <Button Text="Torna al Catalogo" Command="{Binding GoToCatalogCommand}" />
+    </StackLayout>
 </ContentPage>
